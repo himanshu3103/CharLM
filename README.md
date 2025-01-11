@@ -1,6 +1,6 @@
 # CharLM
 
-## Trigram Language Model
+## 1. Trigram Language Model
 
 ### Overview
 This is the first part of `CharLM`, trigram-based character-level language model designed to generate sample names and evaluate probabilities of sequences in a dataset. The model supports **two training methods**:
