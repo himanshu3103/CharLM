@@ -39,12 +39,12 @@ pip install torch
    ```
 
 ### Arguments
-| Argument       | Description                                                                                  | Default       |
+| Argument               | Description                                                                                  | Default       |
 |----------------|----------------------------------------------------------------------------------------------|---------------|
-| `--file_path`  | Path to the text file containing the dataset.                                                | Required      |
-| `--method`     | Training method: `count` for count-based or `neural` for neural network-based training.       | `count`       |
-| `--epochs`     | Number of epochs (only for neural network-based training).                                    | `200`         |
-| `--lr`         | Learning rate (only for neural network-based training).                                      | `50`          |
+| `--file_path`          | Path to the text file containing the dataset.                                                | Required      |
+| `--method`             | Training method: `count` for count-based or `neural` for neural network-based training.       | `count`       |
+| `--epochs`              | Number of epochs (only for neural network-based training).                                    | `200`         |
+| `--lr`                  | Learning rate (only for neural network-based training).                                      | `50`          |
 
 ---
 
