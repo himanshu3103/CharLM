@@ -3,7 +3,7 @@
 ## Index of Implementations
 This repository contains multiple implementations of character-level language models:
 
-1. [Trigram Language Model](##trigram-language-model)  
+1. [Trigram Language Model](#trigram-language-model)  
    A statistical model that calculates probabilities using character trigram counts with smoothing.  
 
 2. [Neural Network Character-Level Language Model](#neural-network-character-level-language-model)  
