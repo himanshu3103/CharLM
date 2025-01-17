@@ -1,5 +1,18 @@
 # CharLM
 
+## Index of Implementations
+This repository contains multiple implementations of character-level language models:
+
+1. [Count-Based Trigram Language Model](#1-count-based-trigram-language-model)  
+   A statistical model that calculates probabilities using character trigram counts with smoothing.  
+
+2. [Neural Network-Based Trigram Language Model](#2-neural-network-based-trigram-language-model)  
+   A neural network implementation of a trigram-based language model inspired by Bengio et al. (2003).  
+
+3. [Advanced Neural Network Character-Level Language Model](#3-advanced-neural-network-character-level-language-model)  
+   A more flexible and customizable deep learning model with character embeddings and multilayer perceptrons (MLPs).  
+
+
 ## 1. Trigram Language Model
 
 ### Overview
