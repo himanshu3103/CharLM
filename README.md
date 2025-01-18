@@ -183,17 +183,20 @@ The model uses **Cross-Entropy Loss** to optimize the prediction of the next cha
 ### Example Output
 ```
 Training Started
-Step: 0 || Loss: 3.5298
-Step: 10000 || Loss: 2.5243
-Step: 20000 || Loss: 2.3312
+47551
+Step: 0 || Loss: 3.3162782192230225
+Step: 10000 || Loss: 2.4418375492095947
+Step: 20000 || Loss: 2.2259957790374756
 ...
-Final Train Loss: 2.2145
-Final Val Loss: 2.3214
-Generated Samples:
-hello.
-world.
-charlm.
-python.
+Step: 190000 || Loss: 1.9431310892105103
+Final Train Loss: 1.9700287580490112
+Final Val Loss: 2.3015241622924805
+Time taken for training: 831.7610
+tianna.
+vya.
+brie.
+athi.
+blisha.
 ...
 ```
 
