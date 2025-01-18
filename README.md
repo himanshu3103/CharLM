@@ -106,118 +106,101 @@ Delta.
 ## Neural Network Character-Level Language Model
 
 ### Overview
-This is a character-level language model that uses a **deep neural network** inspired by the paper "A Neural Probabilistic Language Model" by Bengio et al. (2003) to generate character sequences (e.g., names or words). The model is trained using a dataset of words where each line contains a sample, learning character embeddings and sequence patterns to predict the next character in a sequence to generate synthetic samples and evaluate the model's performance on training, validation, and test datasets.
+This repository implements a **Neural Network Character-Level Language Model**, inspired by the paper "A Neural Probabilistic Language Model" by Bengio et al. (2003). The model is capable of generating character-level sequences and evaluates their likelihood. It incorporates modern deep learning techniques such as **Batch Normalization** (Ioffe et al., 2015) and **He Initialization** (He et al., 2015).
 
 ### Features
-1. **Character Embeddings**:
-   - Learns embeddings for each character in the dataset.
-   - Embedding dimension is adjustable using the `--emd_dim` argument.
+1. Implements a multi-layer neural network with:
+   - Character embeddings.
+   - Fully connected layers with **Batch Normalization**.
+   - **Tanh** activations.
+2. Supports generating character sequences after training.
+3. Uses a flexible architecture for customization of:
+   - Embedding dimensions.
+   - Number of layers.
+   - Hidden layer size.
+   - Training epochs and batch size.
 
-2. **Customizable Network**:
-   - Two-layer neural network with a hidden layer size adjustable using `--neurons_second_layer`.
-
-3. **Sequence Prediction**:
-   - Predicts the next character based on a sequence of prior characters.
-
-4. **Synthetic Data Generation**:
-   - Generates words based on the trained model using sampling.
-
----
-
-### Installation and Usage
-
-#### Dependencies
-Ensure the following libraries are installed:
+### Dependencies
 - Python 3.8+
 - PyTorch
 - argparse
 
-Install PyTorch using:
+Install dependencies using:
 ```bash
 pip install torch
 ```
 
-#### How to Run
-1. **Prepare the Dataset**:
-   - Create a text file (`dataset.txt`) where each line represents a single word.
+### How to Use
 
-2. **Run the Model**:
-   Train the neural network using:
-   ```bash
-   python mlp_lang_model.py --file_path <path_to_dataset> [options]
-   ```
+#### 1. Prepare Dataset
+Create a text file where each line contains a single word or sequence (e.g., `dataset.txt`).
 
-   **Example**:
-   ```bash
-   python mlp_lang_model.py --file_path dataset.txt --epochs 100000 --batch_sz 64 --blr 0.01 --emd_dim 16 --block_sz 5 --neurons_second_layer 128 --samples 10
-   ```
+#### 2. Run the Model
+Train the model and generate sequences using the following command:
+```bash
+python charlm.py --file_path <path_to_dataset> [options]
+```
 
-### Arguments
-| Argument               | Description                                                                                  | Default       |
-|-------------------------|----------------------------------------------------------------------------------------------|---------------|
-| `--file_path`           | Path to the text file containing the dataset.                                                | Required      |
-| `--epochs`              | Number of epochs to train the model.                                                         | `200000`      |
-| `--batch_sz`            | Batch size used for training.                                                                | `32`          |
-| `--blr`                 | Base learning rate used for training.                                                       | `0.1`         |
-| `--decay`               | Decay rate for learning rate in the second phase of training.                                | `0.1`         |
-| `--emd_dim`             | Dimension of the embedding vectors.                                                         | `10`          |
-| `--block_sz`            | Context window size (number of previous characters to use).                                  | `3`           |
-| `--neurons_second_layer`| Number of neurons in the second layer of the neural network.                                 | `200`         |
-| `--samples`             | Number of samples to be generated after training.                                            | `20`          |
+#### Command-Line Arguments
+| Argument          | Description                                                                                 | Default        |
+|-------------------|---------------------------------------------------------------------------------------------|----------------|
+| `--file_path`     | Path to the text file containing the dataset.                                               | Required       |
+| `--epochs`        | Number of epochs to train the model.                                                        | `200000`       |
+| `--batch_sz`      | Batch size for training.                                                                    | `32`           |
+| `--blr`           | Base learning rate.                                                                         | `0.09`         |
+| `--decay`         | Learning rate decay factor applied in the second half of training.                          | `0.1`          |
+| `--emd_dim`       | Dimension of character embeddings.                                                          | `10`           |
+| `--block_sz`      | Size of the context window (number of preceding characters to consider).                    | `3`            |
+| `--n_hidden`      | Number of neurons in the hidden layers.                                                     | `100`          |
+| `--samples`       | Number of sequences to generate after training.                                             | `20`           |
 
----
+#### Example
+```bash
+python charlm.py --file_path dataset.txt --epochs 100000 --batch_sz 64 --n_hidden 128 --samples 10
+```
 
-### Model Details
+### Model Architecture
+The model consists of:
+1. **Character Embedding Layer**: Converts each character into a learnable vector of fixed size.
+2. **Fully Connected Layers**: Stacked layers with **Batch Normalization** and **Tanh** activation.
+3. **Output Layer**: Maps the final layer's output to vocabulary logits using a fully connected layer.
 
-#### Architecture
-1. **Embedding Layer**:
-   - Maps each character to a vector of size `emd_dim`.
-   - Captures semantic relationships between characters.
+### Initialization
+- **Weights** are initialized using **He Initialization** (He et al., 2015) for deep networks.
+- The output layer's gamma parameter is scaled down to improve training stability.
 
-2. **Hidden Layer**:
-   - A fully connected layer with `neurons_second_layer` neurons.
-   - Uses the **tanh** activation function.
-
-3. **Output Layer**:
-   - Produces logits for each character in the vocabulary.
-   - Uses a softmax function for probability distribution.
-
-#### Loss Function
-- The model uses **Cross-Entropy Loss** to measure the prediction error.
-
----
+### Loss Function
+The model uses **Cross-Entropy Loss** to optimize the prediction of the next character in the sequence.
 
 ### Output
-1. **Training and Validation Loss**:
-   - Displays the loss at the end of training and validation.
+1. **Training Metrics**:
+   - Logs the loss at regular intervals during training.
+   - Final training and validation losses are displayed after training.
+2. **Generated Sequences**:
+   - Produces character sequences based on the trained model.
+   - The sequences terminate when a special end-of-sequence token (e.g., `.`) is encountered.
 
-2. **Generated Samples**:
-   - Outputs synthetic samples generated by the model.
-
-**Example Output**:
+### Example Output
 ```
 Training Started
-Number of parameters in the model: 17697
-Step: 0 || Loss: 32.61125564575195
-Step: 10000 || Loss: 2.3048486709594727
-Step: 20000 || Loss: 2.3219010829925537
+Step: 0 || Loss: 3.5298
+Step: 10000 || Loss: 2.5243
+Step: 20000 || Loss: 2.3312
 ...
-Step: 190000 || Loss: 1.9214112758636475
-Final Train Loss: 2.0580263137817383
-Final Dev Loss: 2.3804244995117188
-Time taken for training: 297.1182
-jeralynna.
-dareylia.
-kozalanie.
-serenna.
+Final Train Loss: 2.2145
+Final Val Loss: 2.3214
+Generated Samples:
+hello.
+world.
+charlm.
+python.
 ...
 ```
 
----
+### References
+1. Bengio, Y., et al. (2003). "A Neural Probabilistic Language Model."
+2. He, K., et al. (2015). "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification."
+3. Ioffe, S., et al. (2015). "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift."
 
-### Paper Reference
-This implementation is inspired by the foundational work:
-> Bengio, Yoshua, et al. *"A Neural Probabilistic Language Model."* Journal of Machine Learning Research 3 (2003): 1137-1155.
-
-## Contributions
-Feel free to contribute by improving the loss functions, adding new features, or testing on additional datasets.
+### License
+This project is licensed under the MIT License.
