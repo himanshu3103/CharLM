@@ -4,6 +4,7 @@
 This repository contains multiple implementations of character-level language models:
 
 1. [WaveNet Architecture based character level language model](#wavenet-character-level-language-model)
+   Implementation of WaveNet Model Oord et al (2016) for language modeling. 
 2. [Neural Network Character-Level Language Model](#neural-network-character-level-language-model)  
    A neural network implementation of a trigram-based language model inspired by Bengio et al. (2003).  
 3. [Trigram Language Model](#trigram-language-model)  
