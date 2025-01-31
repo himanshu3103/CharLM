@@ -3,7 +3,7 @@
 ## Index of Implementations
 This repository contains multiple implementations of character-level language models:
 
-1. [CharGPT: Transformer-based Character-Level Language Model](#chargpt-transformer-based-character-level-language-model)
+1. [CharGPT: Transformer-based Character-Level Language Model](#chargpt-transformer-based-character-level-language-model) Implementation of a character level GPT using Transformer Decoder for text generation.
 2. [WaveNet Architecture based character level language model](#wavenet-character-level-language-model)
    Implementation of WaveNet Model Oord et al (2016) for language modeling. 
 3. [Neural Network Character-Level Language Model](#neural-network-character-level-language-model)  
@@ -18,6 +18,8 @@ This repository contains multiple implementations of character-level language mo
 
 ### Overview  
 CharGPT is a character-level language model inspired by OpenAI's GPT architecture. It implements the decoder portion of the Transformer model from *Attention Is All You Need* and is trained on raw text data to generate coherent sequences. The model learns to predict the next character in a sequence, allowing it to generate text in a similar style to its training data.  
+
+![transfomer](transformer.webp)
 
 ### Features  
 - Implements a **Transformer decoder** using multi-head self-attention and feed-forward layers.  
