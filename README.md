@@ -3,7 +3,7 @@
 ## Index of Implementations
 This repository contains multiple implementations of character-level language models:
 
-1. [CharGPT: Transformer-based Character-Level Language Model](#chargpt-transformer-based-character-level-language-model) Implementation of a character level GPT using Transformer Decoder for text generation.
+1. [miniGPT: Transformer-based Character-Level Language Model](#minigpt-transformer-based-character-level-language-model) Implementation of a character level GPT using Transformer Decoder for text generation.
 2. [WaveNet Architecture based character level language model](#wavenet-character-level-language-model)
    Implementation of WaveNet Model Oord et al (2016) for language modeling. 
 3. [Neural Network Character-Level Language Model](#neural-network-character-level-language-model)  
@@ -14,10 +14,10 @@ This repository contains multiple implementations of character-level language mo
 
 ---
 
-## CharGPT: Transformer-based Character-Level Language Model  
+## miniGPT: Transformer-based Character-Level Language Model  
 
 ### Overview  
-CharGPT is a character-level language model inspired by OpenAI's GPT architecture. It implements the decoder portion of the Transformer model from *Attention Is All You Need* and is trained on raw text data to generate coherent sequences. The model learns to predict the next character in a sequence, allowing it to generate text in a similar style to its training data.  
+miniGPT is a character-level language model inspired by OpenAI's GPT architecture. It implements the decoder portion of the Transformer model from *Attention Is All You Need* and is trained on raw text data to generate coherent sequences. The model learns to predict the next character in a sequence, allowing it to generate text in a similar style to its training data.  
 
 ![transfomer](transformer.webp)
 
@@ -30,7 +30,7 @@ CharGPT is a character-level language model inspired by OpenAI's GPT architectur
 - Includes **a simple text generation function** to sample new sequences from the trained model.  
 
 ### Model Architecture  
-CharGPT follows a **Transformer decoder-only architecture**, consisting of:  
+miniGPT follows a **Transformer decoder-only architecture**, consisting of:  
 - **Token Embeddings**: Converts input characters into dense vector representations.  
 - **Positional Embeddings**: Provides positional information for character sequences.  
 - **Stacked Transformer Blocks**: Each block contains:  
@@ -40,7 +40,7 @@ CharGPT follows a **Transformer decoder-only architecture**, consisting of:
 - **Final Linear Layer**: Maps the output embeddings to vocabulary logits for character prediction.  
 
 ### Dependencies  
-To run CharGPT, you need the following dependencies installed:  
+To run miniGPT, you need the following dependencies installed:  
 ```bash
 pip install torch numpy
 ```  
@@ -48,8 +48,8 @@ pip install torch numpy
 ## How to Use  
 ### 1. Clone the repository and navigate to the project directory  
 ```bash
-git clone https://github.com/your-username/CharGPT.git
-cd CharGPT
+git clone https://github.com/your-username/miniGPT.git
+cd miniGPT
 ```  
 
 ### 2. Train the Model  
